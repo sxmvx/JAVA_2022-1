@@ -1,4 +1,3 @@
-
 public class MyGraph {
 
 	private double a, b, c, d;

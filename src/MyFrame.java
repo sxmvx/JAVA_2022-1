@@ -1,32 +1,27 @@
 import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Frame;
-import java.awt.Graphics;
 import java.awt.Label;
 import java.awt.Panel;
-import java.awt.Rectangle;
-import java.awt.Robot;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.image.BufferedImage;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-public class MyFrame01 extends Frame implements ActionListener {
+public class MyFrame extends Frame implements ActionListener {
 	
-	MyPanel01 panel;
-	Panel p1;
+	MyPanel panel;
+	Panel p1, p2, bp1, bp2, lp;
 	TextField t1, t2, t3, t4;
-	Button b1, b2, b3;
+	Button b1, b2, b3, capture;
 	
-	public MyFrame01(){
+	public MyFrame(){
 		super("ÇÔSWU °øºÎ");
 		this.addWindowListener((WindowListener) new WindowAdapter(){
 			public void windowClosing(WindowEvent e){
@@ -37,11 +32,22 @@ public class MyFrame01 extends Frame implements ActionListener {
 		this.setLayout(new BorderLayout());
 		this.setResizable(false);
 		//panel
-		panel = new MyPanel01();
-		this.add(panel, BorderLayout.CENTER);
+		panel = new MyPanel();
+		bp1 = new Panel(null);
+		bp1.setBounds(0, 0, 580, 550);
+		bp2 = new Panel(new BorderLayout());
+		lp = new Panel();
+		bp1.add(panel, BorderLayout.CENTER);
 		
 		p1 = new Panel(new FlowLayout());
-		this.add(p1, BorderLayout.SOUTH);
+		bp2.add(p1, BorderLayout.NORTH);
+		
+		p2 = new Panel(new FlowLayout());
+		bp2.add(p2, BorderLayout.SOUTH);
+		
+		lp.add(bp1, BorderLayout.CENTER);
+		lp.add(bp2, BorderLayout.SOUTH);
+		this.add(lp);
 		
 		//component
 		t1 = new TextField(3);
@@ -60,11 +66,15 @@ public class MyFrame01 extends Frame implements ActionListener {
 		b2.addActionListener(this);
 		b3 = new Button("Clear");
 		b3.addActionListener(this);
+		capture = new Button("Capture");
 		
 		//component add
 		p1.add(l1); p1.add(t1);	p1.add(l2);	p1.add(t2); p1.add(l3);
 		p1.add(t3); p1.add(l4);	p1.add(t4);	p1.add(b1); p1.add(b2); p1.add(b3);
+		p2.add(capture);
 		
+		MouseListener listener = new Code();
+		capture.addMouseListener(listener);
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
@@ -82,19 +92,15 @@ public class MyFrame01 extends Frame implements ActionListener {
 				panel.setGraph(null);
 				panel.addGraph(null);
 			}
+
 		panel.repaint();
 	}
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		MyFrame01 f1 = new MyFrame01();
-		f1.setSize(600, 600);
+		MyFrame f1 = new MyFrame();
+		f1.setSize(600, 700);
 		f1.setVisible(true);
-		
-		JFrame capture = new JFrame();
-		capture.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-		
 		
 	}
 
