@@ -17,6 +17,7 @@ import javax.swing.JFrame;
 public class MyFrame extends Frame implements ActionListener {
 	
 	MyPanel panel;
+	CubicEquation ce = new CubicEquation();
 	Panel p1, p2, bp1, bp2, lp;
 	TextField t1, t2, t3, t4;
 	Button b1, b2, b3, capture;
@@ -78,14 +79,30 @@ public class MyFrame extends Frame implements ActionListener {
 	}
 	
 	public void actionPerformed(ActionEvent arg0) {
-		double A = Double.parseDouble(t1.getText());
-		double B = Double.parseDouble(t2.getText());
-		double C = Double.parseDouble(t3.getText());
-		double D = Double.parseDouble(t4.getText());
+		double a = Double.parseDouble(t1.getText());
+		double b = Double.parseDouble(t2.getText());
+		double c = Double.parseDouble(t3.getText());
+		double d = Double.parseDouble(t4.getText());
 		if(arg0.getSource()==b1)
-			panel.setGraph(new MyGraph(A, B, C, D));
+		{
+			panel.setGraph(new MyGraph(a, b, c, d));
+			if(a==0 && b==0)
+				ce.solve(c, d);
+			else if(a==0 && b!=0)
+				ce.secondSolve(b, c, d);
+			else if(a!=0)
+				ce.thirdSolve(a, b, c, d);
+		}
 		else if(arg0.getSource()==b2)
-			panel.addGraph(new MyGraph(A, B, C, D));
+		{
+			panel.addGraph(new MyGraph(a, b, c, d));
+			if(a==0 && b==0)
+				ce.solve(c, d);
+			else if(a==0 && b!=0)
+				ce.secondSolve(b, c, d);
+			else if(a!=0)
+				ce.thirdSolve(a, b, c, d);
+		}
 		else if(arg0.getSource()==b3)
 			{
 				panel.clearGraph();
