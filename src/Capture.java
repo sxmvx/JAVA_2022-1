@@ -12,7 +12,7 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
-public class Code implements MouseListener {
+public class Capture implements MouseListener {
 	
 	public void mouseClicked(MouseEvent arg0) {}
 	public void mouseEntered(MouseEvent e) {}

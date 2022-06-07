@@ -74,7 +74,7 @@ public class MyFrame extends Frame implements ActionListener {
 		p1.add(t3); p1.add(l4);	p1.add(t4);	p1.add(b1); p1.add(b2); p1.add(b3);
 		p2.add(capture);
 		
-		MouseListener listener = new Code();
+		MouseListener listener = new Capture();
 		capture.addMouseListener(listener);
 	}
 	
