@@ -8,7 +8,7 @@ JAVA Toy Project
 - 두 개의 그래프를 그려 비교
 - 비교한 이미지를 캡쳐 후 저장
 
-- ### Function
+### Function
 - If you input numbers of linear, quadratic, or cubic function, a graph is displayed.
 - Save the printed graph as an image
 - Draw and compare two graphs
